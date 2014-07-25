@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html ng-app="flickr">
+<head>
+	<meta charset="utf-8"/>
+	<meta name="author" content="Odutayo Ayoola">
+	<meta name="description" content="A Picture Serach Site">
+	<title>My Picture Page</title>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+	<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,900|Lora|Tinos|Philosopher|Oleo+Script|Libre+Baskerville:400italic|Droid+Serif|Vollkorn|Playfair+Display+SC|Playball|Old+Standard+TT|Lusitana|Vidaloka' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/jquery.thumbnailScroller.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css" />
+
+	<!--Connect to the google maps api using your api key-->
+
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
+
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyBL03mxM8g1ZRmmZoFJjbOnD_XZrFggmiM"></script>
+
+</head> 
+<body ng-controller="flickrController as fCtrl">
+	<div id="header">	
+		<ul>	
+			<li><h3 class="title">Picture Location</h3></li>
+			<li id="input">
+				<form ng-submit="search()">
+					<input type="text"  id="term" ng-model="picture"/>
+					<button id="search">Search</button></li>
+				</form>
+		</ul>
+	</div>
+	 <div id="map_canvas">
+	 	<div>
+	 		<img src="img/ajax-loader.gif" />
+	 	</div>
+	</div>
+
+	<div id="tS2" class="jThumbnailScroller">
+    <div class="jTscrollerContainer">
+        <div class="jTscroller">
+        	<a class="location" href="#" ng-repeat="pix in fCtrl.results">
+        		<img ng-src="{{'https://farm' + pix.farm + '.staticflickr.com/' + pix.server + '/' + pix.id + '_' + pix.secret + '_q.jpg' }}" ng-click="locate(pix)">
+        	</a>
+        </div>
+    </div>
+    <a href="#" class="jTscrollerPrevButton"></a>
+    <a href="#" class="jTscrollerNextButton"></a>
+</div>
+				
+	<footer id="foot">
+		<p>Created by Ayo &copy 2014</p>
+	</footer>
+	<script>
+		
+		(function($){
+		window.onload=function(){
+			$("#tS2").thumbnailScroller({ 
+			scrollerType:"clickButtons", 
+			scrollerOrientation:"horizontal", 
+			scrollSpeed:2, 
+			scrollEasing:"easeOutCirc", 
+			scrollEasingAmount:600, 
+			acceleration:4, 
+			scrollSpeed:800, 
+			noScrollCenterSpace:10, 
+			autoScrolling:0, 
+			autoScrollingSpeed:2000, 
+			autoScrollingEasing:"easeInOutQuad", 
+			autoScrollingDelay:500 
+			});
+		}
+		})(jQuery);
+	</script>
+			<script type="text/javascript" src="js/jquery.thumbnailScroller.js"></script>
+			<script type="text/javascript" src="js/angular.min.js"></script>
+				<script type="text/javascript" src="js/app.js"></script>
+	</body>
+</html>
