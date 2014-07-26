@@ -1,49 +1,49 @@
-    /*************************
-        Google Map
-    **************************/
+/*************************
+    Google Map
+**************************/
 
-            myApp = {
+myApp = {
 
-                init: function() {
-                    myApp.config = {
-                        geocoder: new google.maps.Geocoder(),
-                        mapOptions: {
-                            zoom: 15,
-                            center: new google.maps.LatLng(6.3456, 80),
-                            mapTypeId: 'roadmap'
-                        },
-                        infowindow: new google.maps.InfoWindow(),
-                    };
-
-                    google.maps.event.addDomListener(window, 'load', myApp.geo);
-                    
-                },
-                geo: function(){
-                   myApp.config.map = new google.maps.Map(document.getElementById('map_canvas'), myApp.config.mapOptions);
-                },
-                codeLatLng: function(lat, lng){ 
-                    var latlng = new google.maps.LatLng(lat, lng);
-                    myApp.config.geocoder.geocode({'latLng': latlng}, function(results, status) {
-                        if (status == google.maps.GeocoderStatus.OK) {
-                            if (results[1]) {
-                                myApp.config.map.setZoom(15);
-                                myApp.config.marker = new google.maps.Marker({
-                                    position: latlng,
-                                    map: myApp.config.map
-                                });
-                                myApp.config.infowindow.setContent(results[1].formatted_address);
-                                myApp.config.infowindow.open(myApp.config.map, myApp.config.marker);
-                            } 
-                            else {
-                                alert('No results found');
-                            }
-                        } 
-                        else {
-                            alert('Geocoder failed due to: ' + status);
-                        }
-                    }); 
-                } 
+    init: function() {
+        myApp.config = {
+            geocoder: new google.maps.Geocoder(),
+            mapOptions: {
+                zoom: 15,
+                center: new google.maps.LatLng(6.3456, 80),
+                mapTypeId: 'roadmap'
+            },
+            infowindow: new google.maps.InfoWindow(),
         };
+
+        google.maps.event.addDomListener(window, 'load', myApp.geo);
+        
+    },
+    geo: function(){
+       myApp.config.map = new google.maps.Map(document.getElementById('map_canvas'), myApp.config.mapOptions);
+    },
+    codeLatLng: function(lat, lng){ 
+        var latlng = new google.maps.LatLng(lat, lng);
+        myApp.config.geocoder.geocode({'latLng': latlng}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[1]) {
+                    myApp.config.map.setZoom(15);
+                    myApp.config.marker = new google.maps.Marker({
+                        position: latlng,
+                        map: myApp.config.map
+                    });
+                    myApp.config.infowindow.setContent(results[1].formatted_address);
+                    myApp.config.infowindow.open(myApp.config.map, myApp.config.marker);
+                } 
+                else {
+                    alert('No results found');
+                }
+            } 
+            else {
+                alert('Geocoder failed due to: ' + status);
+            }
+        }); 
+    } 
+};
         $( document ).ready( myApp.init );
     /*************************
       Image Loaded by Default
