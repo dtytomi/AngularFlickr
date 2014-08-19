@@ -21,15 +21,16 @@
 </head> 
 <body ng-controller="flickrController as fCtrl">
 	<div id="header">	
-		<ul>	
-			<li><h3 class="title">Picture Location</h3></li>
-			<li id="input">
-				<form ng-submit="search()">
-					<input type="text"  id="term" ng-model="picture"/>
-					<button id="search">Search</button></li>
-				</form>
-		</ul>
-	</div>
+     <ul>	
+      <li><h3 class="title">Picture Location</h3></li>
+    	<li id="input">
+         <form ng-submit="search()">
+    		<input type="text"  id="term" ng-model="picture"/>
+    		<button id="search">Search</button>
+    	  </form>
+    	</li>	
+     </ul>
+   </div>
 	 <div id="map_canvas">
 	 	<div>
 	 		<img src="img/ajax-loader.gif" />
